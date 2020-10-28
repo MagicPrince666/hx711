@@ -9,6 +9,7 @@
 #include <sched.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define CLOCK_PIN	31
 #define DATA_PIN	30

@@ -38,7 +38,7 @@ int read_AIN0(float *fvoltage)
 
     // convert to integer 
     sscanf( buf, "%d", &value ); 
-    *fvoltage = 1.0 * value; 
+    *fvoltage = 0.0001 * value; 
     return ret; 
 } 
 
@@ -46,25 +46,18 @@ int read_AIN0(float *fvoltage)
 int main(int argc, char** argv) 
 { 
   int ret = 0;
-  int times = 10;
   float fvalue = 0.0;
   float value = 0.0;
-
-  if(argc >= 2) {
-    times = atoi(argv[1]);
-  }
 
   printf("HX711 IIO AD test v2.0\n"); 
   printf("AIN0 = %.2f\n", fvalue);
 
   while(1) {
-    for( int i = 0; i < times; i++) {
-      if(read_AIN0(&fvalue) >= 0) { 
-        value += fvalue;
-      }
+    if(read_AIN0(&fvalue) >= 0) { 
+      value = fvalue * 9.2 - 7867.0;
     }
-    value = value/times;
-    printf("AIN0 = %.2f  \n", value);
+    printf("fvalue = %.2f  \n", fvalue);
+    printf("Weight = %.2f  g\n", value);
     value = 0.0;
     usleep(100000);
   }

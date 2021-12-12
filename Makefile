@@ -1,4 +1,4 @@
-#CXX = arm-f1c200s-linux-gnueabi-g++
+# CXX = /home/leo/xos/output/host/bin/arm-f1c100s-linux-gnueabi-g++
 
 #目标文件
 TARGET	= hx711 
